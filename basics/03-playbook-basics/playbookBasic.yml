@@ -1,0 +1,41 @@
+---
+# Playbooks are lists of plays
+# Each play targets specific hosts and defines tasks to execute
+
+- name: Install and configure PHP
+  hosts:
+    - webservers
+  become: yes  # Run tasks with sudo/root privileges
+  
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      # update_cache: Refreshes package list
+      # cache_valid_time: Only update if cache is older than 3600 seconds (1 hour)
+    
+    - name: Install PHP and common extensions
+      apt:
+        name:
+          - php8.2
+          - php8.2-cli
+          - php8.2-fpm
+          - php8.2-mysql
+        state: present
+      # name: List of packages to install
+      # state: present means "ensure these are installed"
+      # state: absent would remove them
+    
+    - name: Ensure PHP-FPM service is running
+      service:
+        name: php8.2-fpm
+        state: started
+        enabled: yes
+      # state: started ensures the service is currently running
+      # enabled: yes means it starts automatically on boot
+
+# Key concepts:
+# - Parameters belong to their module (one level indented)
+# - "become: yes" is needed for system-level changes
+# - Module docs: https://docs.ansible.com/ansible/latest/collections/index_module.html

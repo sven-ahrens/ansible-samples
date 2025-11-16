@@ -16,3 +16,10 @@ Foundational concepts and syntax references for Ansible automation.
 - Comments
 - Lists
 - Quotes
+
+### [03 - Playbook Basics](03-playbook-basics/)
+- Playbook structure
+- Hosts and tasks
+- Modules and parameters
+- State management
+- Privilege escalation (become)
