@@ -1,0 +1,26 @@
+---
+- name: Install PHP 8.4 on web servers
+  hosts: webservers
+  become: yes
+
+  vars:
+    php_version: "8.4"
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install PHP and required extensions
+      apt:
+        name:
+          - php{{ php_version }}
+        state: present
+
+    - name: Display PHP version
+      command: php -v
+      register: php_version_output
+
+    - name: Show PHP version
+      debug:
+        msg: "{{ php_version_output.stdout_lines }}"

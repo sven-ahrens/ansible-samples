@@ -1,0 +1,71 @@
+---
+# ===========================================
+# YAML Syntax Examples for Ansible
+# ===========================================
+
+# ========== STRINGS ==========
+string_simple: Hello
+string_quoted: "Hello World"
+string_single_quoted: 'Single quotes work too'
+
+# Multi-line preserving newlines
+script_example: |
+  #!/bin/bash
+  echo "Line 1"
+  echo "Line 2"
+  echo "Line 3"
+
+# Multi-line folded into one line
+description: >
+  This is a very long description
+  that will be folded into
+  a single line.
+
+# ========== NUMBERS ==========
+port: 8080
+price: 29.99
+memory_gb: 16
+
+# ========== BOOLEANS ==========
+enabled: true
+debug: false
+production: yes
+testing: no
+
+# ========== LISTS ==========
+# Inline list
+colors: [red, green, blue]
+
+# Block list (preferred)
+packages:
+  - nginx
+  - php8.2-fpm
+  - mysql-server
+
+# List of dictionaries
+servers:
+  - name: web1
+    ip: 192.168.1.10
+    role: webserver
+  - name: db1
+    ip: 192.168.1.20
+    role: database
+
+# ========== DICTIONARIES ==========
+user:
+  name: deploy
+  home: /home/deploy
+  shell: /bin/bash
+
+# Nested dictionaries
+application:
+  name: MyApp
+  version: 1.0.0
+  database:
+    host: localhost
+    port: 3306
+    name: myapp_db
+  cache:
+    type: redis
+    host: localhost
+    port: 6379
